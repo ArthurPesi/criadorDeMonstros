@@ -20,7 +20,11 @@ function barrasAleatorias(monstroComBarras)
         var barra = document.createElement("div");
         var linha = document.createElement("div");
         var recheio = document.createElement("div");
+<<<<<<< HEAD
         var atributo = document.createElement("p")
+=======
+        var atributo = document.createElement("p");
+>>>>>>> 58ad5189edd78e1959dc8a0c8346df51266821d9
         atributo.className = "atributo"
         atributo.id = "atributo"
         monstroComBarras.appendChild(linha)
