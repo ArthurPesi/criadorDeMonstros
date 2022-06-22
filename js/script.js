@@ -97,11 +97,6 @@ function criarMonstro()
     divDoMonstro.appendChild(braco)
     divDoMonstro.appendChild(perna)
 
-    cabeca.style.display = "none"
-    corpo.style.display = "none"
-    braco.style.display = "none"
-    perna.style.display = "none"
-
     var sorteioCabeca = Math.floor(Math.random() * 5) + 1;
     var sorteioCorpo = Math.floor(Math.random() * 5) + 1;
     var sorteioBraco = Math.floor(Math.random() * 5) + 1;
