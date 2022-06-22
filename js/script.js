@@ -1,5 +1,30 @@
+const cabecas = ["Tortuga/cabecaTortuga.png",
+                "Griffin/cabecaGriffin.png",
+                "Olhudo/cabecaOlhudo.png",
+                "Zumbi/cabecaZumbi.png",
+                "Fantasma/cabecaFantasma.png"];
 
+const corpos = ["Tortuga/corpoTortuga.png",
+                "Griffin/corpoGriffin.png",
+                "Olhudo/corpoOlhudo.png",
+                "Zumbi/corpoZumbi.png",
+                "Fantasma/corpoFantasma.png"];
 
+const bracos = ["Tortuga/bracoTortuga.png",
+                "Griffin/bracoGriffin.png",
+                "Olhudo/bracoOlhudo.png",
+                "Zumbi/bracoZumbi.png",
+                "Fantasma/bracoFantasma.png"];
+
+const pernas = ["Tortuga/pernaTortuga.png",
+                "Griffin/pernaGriffin.png",
+                "Olhudo/pernaOlhudo.png",
+                "Zumbi/pernaZumbi.png",
+                "Fantasma/pernaFantasma.png"];
+
+const ImgMembros = [cabecas,corpos,bracos,pernas]
+
+const prefix = "sprites/";
 
 function criarMonstro()
 {
@@ -8,33 +33,6 @@ function criarMonstro()
 
     var sorteios = [];
     var membros = [];
-
-    const prefix = "sprites/";
-    const cabecas = ["Tortuga/cabecaTortuga.png",
-                    "Griffin/cabecaGriffin.png",
-                    "Olhudo/cabecaOlhudo.png",
-                    "Zumbi/cabecaZumbi.png",
-                    "Fantasma/cabecaFantasma.png"];
-
-    const corpos = ["Tortuga/corpoTortuga.png",
-                    "Griffin/corpoGriffin.png",
-                    "Olhudo/corpoOlhudo.png",
-                    "Zumbi/corpoZumbi.png",
-                    "Fantasma/corpoFantasma.png"];
-
-    const bracos = ["Tortuga/bracoTortuga.png",
-                    "Griffin/bracoGriffin.png",
-                    "Olhudo/bracoOlhudo.png",
-                    "Zumbi/bracoZumbi.png",
-                    "Fantasma/bracoFantasma.png"];
-
-    const pernas = ["Tortuga/pernaTortuga.png",
-                    "Griffin/pernaGriffin.png",
-                    "Olhudo/pernaOlhudo.png",
-                    "Zumbi/pernaZumbi.png",
-                    "Fantasma/pernaFantasma.png"];
-
-    const ImgMembros = [cabecas,corpos,bracos,pernas]
 
     elementoPai.appendChild(elementoFilho)
 
@@ -51,7 +49,7 @@ function criarMonstro()
     }
 
     setTimeout(posicionar,100,sorteios, membros);
-    //barrasAleatorias(elementoFilho)
+    barrasAleatorias(elementoFilho)
     
 
 }
@@ -123,53 +121,21 @@ function posicionar(sorteios, membros) {
     }
 function barrasAleatorias(divMonstro)
 {
-    var sorteioVida = Math.floor(Math.random() * 101);
-    var sorteioVelocidade = Math.floor(Math.random() * 101);
-    var sorteioForca = Math.floor(Math.random() * 101);
-    var sorteioConstituicao = Math.floor(Math.random() * 101); 
+    var atributos = ["vida","velocidade","forca","constituicao"]
     for(var i = 0; i < 4; i++)
     {
+        var sorteio = Math.floor(Math.random() * 101);
         var barra = document.createElement("div");
         var linha = document.createElement("div");
         var recheio = document.createElement("div");
-        var atributo = document.createElement("p")
         var atributo = document.createElement("p");
-        atributo.className = "atributo"
-        atributo.id = "atributo"
-        divMonstro.appendChild(linha)
-        linha.appendChild(atributo)
-        linha.appendChild(barra)
+        //atributo.className = "atributo"
+        divMonstro.appendChild(atributo)
+        divMonstro.appendChild(barra)
         barra.className = "barra"
-        barra.id = "barra"
         barra.appendChild(recheio)
         recheio.className = "recheio"
-        recheio.id = "recheio"
-        if (i == 0)
-        {
-            atributo.innerHTML = "vida:"
-
-
-            recheio.style.width = sorteioVida + "%"
-        }
-
-        if (i == 1)
-        {
-            atributo.innerHTML = "velocidade:"
-
-            recheio.style.width = sorteioVelocidade + "%"
-        }
-
-        if (i == 2)
-        {
-            atributo.innerHTML = "forca:"
-            recheio.style.width = sorteioForca + "%"
-        }
-
-        if (i == 3)
-        {
-            atributo.innerHTML = "constituicao:"
-
-            recheio.style.width = sorteioConstituicao + "%"
-        }
+        atributo.innerHTML = atributos[i]
+        recheio.style.width = sorteio.toString() + "%"
     }
 }
