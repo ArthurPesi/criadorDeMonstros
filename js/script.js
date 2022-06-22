@@ -282,7 +282,7 @@ function criarMonstro()
     console.log("largura do braco: " + larguraBraco);
     console.log("largura da perna: " + larguraPerna);
     console.log("");
-    barrasAleatorias(monstroComBarras);},50);
+    barrasAleatorias(monstroComBarras);},800);
     cabeca.style.display = "block"
     corpo.style.display = "block"
     braco.style.display = "block"
