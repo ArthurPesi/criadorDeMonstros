@@ -132,6 +132,7 @@ function barrasAleatorias(divMonstro)
         var barra = document.createElement("div");
         var linha = document.createElement("div");
         var recheio = document.createElement("div");
+        var atributo = document.createElement("p")
         var atributo = document.createElement("p");
         atributo.className = "atributo"
         atributo.id = "atributo"
