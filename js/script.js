@@ -26,34 +26,46 @@ const ImgMembros = [cabecas,corpos,bracos,pernas]
 
 const prefix = "sprites/";
 
+const atributos = ["vida","velocidade","forca","constituicao"]
+
+
 function criarMonstro()
 {
     var elementoPai = document.getElementById("monstros");
-    var elementoFilho = document.createElement("div");    
+    var monstro = document.createElement("div"); 
+    
+    elementoPai.appendChild(monstro)
 
+    var sorteios = sortearMembros();
+    var membros = criarMembros(sorteios, monstro);
+
+    setTimeout(posicionarMembros,100,sorteios, membros);
+
+    barrasAleatorias(monstro)
+}
+
+function sortearMembros() {
     var sorteios = [];
-    var membros = [];
-
-    elementoPai.appendChild(elementoFilho)
-
     for(var i = 0; i < 4; i++) {
         sorteios[i] = Math.floor(Math.random() * 5);
+    }
+    return sorteios;
+}
 
+function criarMembros(sorteios, monstro) {
+    var membros = []
+    for(var i = 0; i < 4; i++) {
         membros[i] = document.createElement("img");
         membros[i].className = "membros"
         if(i === 0 || i === 3) {
             membros[i].style.zIndex = 1
         }
-        elementoFilho.appendChild(membros[i])
+        monstro.appendChild(membros[i])
         membros[i].src = prefix + ImgMembros[i][sorteios[i]];
     }
-
-    setTimeout(posicionar,100,sorteios, membros);
-    barrasAleatorias(elementoFilho)
-    
-
+    return membros;
 }
-function posicionar(sorteios, membros) { 
+function posicionarMembros(sorteios, membros) { 
     var numG = 0;
         if (sorteios[0] == 1)
         {
@@ -119,21 +131,17 @@ function posicionar(sorteios, membros) {
             membros[3].style.top = num.toString() + "px";
         }
     }
-function barrasAleatorias(divMonstro)
-{
-    var atributos = ["vida","velocidade","forca","constituicao"]
+function barrasAleatorias(divMonstro) {
     for(var i = 0; i < 4; i++)
     {
         var sorteio = Math.floor(Math.random() * 101);
         var barra = document.createElement("div");
-        var linha = document.createElement("div");
         var recheio = document.createElement("div");
         var atributo = document.createElement("p");
-        //atributo.className = "atributo"
         divMonstro.appendChild(atributo)
         divMonstro.appendChild(barra)
-        barra.className = "barra"
         barra.appendChild(recheio)
+        barra.className = "barra"
         recheio.className = "recheio"
         atributo.innerHTML = atributos[i]
         recheio.style.width = sorteio.toString() + "%"
