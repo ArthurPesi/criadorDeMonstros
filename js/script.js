@@ -22,7 +22,7 @@ const pernas = ["Tortuga/pernaTortuga.png",
 const ImgMembros = [cabecas,corpos,bracos,pernas];
 
 const offsetCabecas = [0,-30,10,0,0]
-const offsetTopPerna = [0,-10,0,0,0]
+const offsetTopPerna = [0,-10,0,0,-10]
 const offsetTopBracos = [20,-60,20,20,20]
 const offsetLeftBracos = [0,0,0,10,0]
 const offsetLeftPernas = [0,0,0,0,-25]
@@ -36,9 +36,8 @@ function criarMonstro()
 {
     var elementoPai = document.getElementById("monstros");
     var monstro = document.createElement("div"); 
-    monstro.style.height = "400px"
+    monstro.className = "monstro"
     monstro.style.width = "300px"
-    monstro.style.position = "relative"
 
     elementoPai.appendChild(monstro);
 
@@ -80,15 +79,14 @@ function posicionar(sorteios, membros, monstro) {
     var larguraBraco = membros[2].clientWidth;
     var larguraPerna = membros[3].clientWidth;
 
-    var leftBraco = ((parseInt(monstro.style.width) - larguraBraco) / 2) + offsetLeftBracos[sorteios[3]]
-    console.log(leftBraco)
+    var leftBraco = ((parseInt(monstro.style.width) - larguraBraco) / 2);
     var topCorpo = alturaCabeca -10;
     var topBraco = alturaCabeca + offsetTopBracos[sorteios[2]];
-    var topPerna = alturaCabeca + alturaCorpo -10 + offsetTopPerna[sorteios[1]];
+    var topPerna = alturaCabeca + alturaCorpo -10 + offsetTopPerna[sorteios[3]];
     var leftCabeca = ((larguraBraco - larguraCabeca) / 2) + leftBraco;
     var leftCorpo = ((larguraBraco - larguraCorpo) / 2) + leftBraco;
     var leftPerna = ((larguraBraco - larguraPerna) / 2) + offsetLeftPernas[sorteios[3]] + leftBraco;
-
+    leftBraco += offsetLeftBracos[sorteios[2]]
     membros[1].style.top = topCorpo.toString() + "px";
     membros[2].style.top = topBraco.toString() + "px";
     membros[3].style.top = topPerna.toString() + "px";
@@ -108,6 +106,7 @@ function criarBarras(divMonstro) {
         divMonstro.appendChild(atributo)
         divMonstro.appendChild(barra)
         barra.appendChild(recheio)
+        atributo.className = "atributo"
         barra.className = "barra"
         recheio.className = "recheio"
         atributo.innerHTML = atributos[i]
