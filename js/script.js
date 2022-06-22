@@ -3,51 +3,57 @@ const cabecas = ["Tortuga/cabecaTortuga.png",
                 "Olhudo/cabecaOlhudo.png",
                 "Zumbi/cabecaZumbi.png",
                 "Fantasma/cabecaFantasma.png"];
-
 const corpos = ["Tortuga/corpoTortuga.png",
                 "Griffin/corpoGriffin.png",
                 "Olhudo/corpoOlhudo.png",
                 "Zumbi/corpoZumbi.png",
                 "Fantasma/corpoFantasma.png"];
-
 const bracos = ["Tortuga/bracoTortuga.png",
                 "Griffin/bracoGriffin.png",
                 "Olhudo/bracoOlhudo.png",
                 "Zumbi/bracoZumbi.png",
                 "Fantasma/bracoFantasma.png"];
-
 const pernas = ["Tortuga/pernaTortuga.png",
                 "Griffin/pernaGriffin.png",
                 "Olhudo/pernaOlhudo.png",
                 "Zumbi/pernaZumbi.png",
                 "Fantasma/pernaFantasma.png"];
 
-const ImgMembros = [cabecas,corpos,bracos,pernas]
+const ImgMembros = [cabecas,corpos,bracos,pernas];
+
+const offsetCabecas = [0,-30,10,0,0]
+const offsetTopPerna = [0,-10,0,0,0]
+const offsetTopBracos = [20,-60,20,20,20]
+const offsetLeftBracos = [0,0,0,10,0]
+const offsetLeftPernas = [0,0,0,0,-25]
 
 const prefix = "sprites/";
 
-const atributos = ["vida","velocidade","forca","constituicao"]
+const atributos = ["vida","velocidade","forca","constituicao"];
 
 
 function criarMonstro()
 {
     var elementoPai = document.getElementById("monstros");
     var monstro = document.createElement("div"); 
-    
-    elementoPai.appendChild(monstro)
+    monstro.style.height = "400px"
+    monstro.style.width = "300px"
+    monstro.style.position = "relative"
+
+    elementoPai.appendChild(monstro);
 
     var sorteios = sortearMembros();
     var membros = criarMembros(sorteios, monstro);
 
-    setTimeout(posicionarMembros,100,sorteios, membros);
+    setTimeout(posicionar,100,sorteios, membros, monstro);
 
-    barrasAleatorias(monstro)
+    criarBarras(monstro);
 }
 
 function sortearMembros() {
     var sorteios = [];
     for(var i = 0; i < 4; i++) {
-        sorteios[i] = Math.floor(Math.random() * 5);
+        sorteios[i] = Math.floor(Math.random() * ImgMembros[i].length);
     }
     return sorteios;
 }
@@ -65,73 +71,34 @@ function criarMembros(sorteios, monstro) {
     }
     return membros;
 }
-function posicionarMembros(sorteios, membros) { 
-    var numG = 0;
-        if (sorteios[0] == 1)
-        {
-            var alturaCabeca = membros[0].clientHeight - 30;
-        }
-        else if (sorteios[0] == 2)
-        {
-            var alturaCabeca = membros[0].clientHeight + 10;
 
-        }
-        else
-        {
-        var alturaCabeca = membros[0].clientHeight;
-        }
-        var alturaCorpo = membros[1].clientHeight;
-        var larguraCorpo = membros[1].clientWidth;
-        if (sorteios[2] == 3)
-        {
-            larguraBraco = 60 + larguraCorpo;
-        }
-        else
-        {
-        var larguraBraco = membros[2].clientWidth;
-        }
-        var larguraCabeca = membros[0].clientWidth;
+function posicionar(sorteios, membros, monstro) {
+    var alturaCabeca = membros[0].clientHeight + offsetCabecas[sorteios[0]];
+    var larguraCabeca = membros[0].clientWidth
+    var alturaCorpo = membros[1].clientHeight;
+    var larguraCorpo = membros[1].clientWidth;
+    var larguraBraco = membros[2].clientWidth;
+    var larguraPerna = membros[3].clientWidth;
 
-        var larguraPerna = membros[3].clientWidth;
+    var leftBraco = ((parseInt(monstro.style.width) - larguraBraco) / 2) + offsetLeftBracos[sorteios[3]]
+    console.log(leftBraco)
+    var topCorpo = alturaCabeca -10;
+    var topBraco = alturaCabeca + offsetTopBracos[sorteios[2]];
+    var topPerna = alturaCabeca + alturaCorpo -10 + offsetTopPerna[sorteios[1]];
+    var leftCabeca = ((larguraBraco - larguraCabeca) / 2) + leftBraco;
+    var leftCorpo = ((larguraBraco - larguraCorpo) / 2) + leftBraco;
+    var leftPerna = ((larguraBraco - larguraPerna) / 2) + offsetLeftPernas[sorteios[3]] + leftBraco;
 
+    membros[1].style.top = topCorpo.toString() + "px";
+    membros[2].style.top = topBraco.toString() + "px";
+    membros[3].style.top = topPerna.toString() + "px";
 
-        numG = alturaCabeca - 10;
-        membros[1].style.top = numG.toString() + "px";
-        if (sorteios[2] == 1)
-        {
-            var num = alturaCabeca - 50;
-            membros[2].style.top = num.toString() + "px";
-        }
-        else
-        {
-            var num = alturaCabeca + 20;
-            membros[2].style.top = num.toString() + "px";
-        }
-        numG = alturaCabeca + alturaCorpo - 10;
-        membros[3].style.top = numG.toString() + "px";
-        numG = ((larguraBraco - larguraCabeca) / 2);
-        membros[0].style.left = numG.toString() + "px";
-        numG = ((larguraBraco - larguraCorpo) / 2); 
-        membros[1].style.left = numG.toString() + "px";
-
-        if (sorteios[3] == 4)
-        {
-            num = ((larguraBraco - larguraPerna) / 2) - 25;
-            membros[3].style.left =  num.toString() + "px";
-        }
-        else
-        {
-            var num =  ((larguraBraco - larguraPerna) / 2); 
-            membros[3].style.left = num.toString() + "px";
-        }
-
-        if (sorteios[1] == 1)
-        {
-            var num  = membros[3].style.top - 10;
-            membros[3].style.top = num.toString() + "px";
-        }
-    }
-function barrasAleatorias(divMonstro) {
+    membros[0].style.left = leftCabeca.toString() + "px";
+    membros[1].style.left = leftCorpo.toString() + "px";
+    membros[2].style.left = leftBraco.toString() + "px";
+    membros[3].style.left = leftPerna.toString() + "px";
+}
+function criarBarras(divMonstro) {
     for(var i = 0; i < 4; i++)
     {
         var sorteio = Math.floor(Math.random() * 101);
