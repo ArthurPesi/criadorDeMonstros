@@ -3,6 +3,21 @@
     font-family: "montserrat";
     src: url("fontes/Montserrat-Regular.otf");
 }
+html {
+    height: 100%;
+} body {
+    height: 100%;
+    margin: 0px;
+    background-color: #ee9528;
+}
+#background {
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background-image: url("bg.jpg");
+    background-size: 100% 100%;
+}
 .membros{
     position: absolute;
     display: block;
@@ -11,25 +26,38 @@
 .barra{
     width: 80px;
     height: 10px;
-    border: 5px solid black;
-    border-radius: 20px;
+    border: 5px solid #012201;
+    background-color: #012201;
 }
 
 .recheio{
     height: 100%;
-    background-color: rgb(36, 119, 105);
-    border-radius: 20px;
+    background-color: #549127;
 }
 
 .monstro {
     width: 300px;
-    height: 600px;
+    height: 500px;
     position: relative;
-    background-color: rgb(179, 108, 28);
-    border: solid 5px rgb(119, 64, 12);
+    background-color: #198C7B;
+    border: solid 15px #0F2D40;
+    margin: 30px;
     padding: 10px;
+    display: inline-block;
 }
 
 .atributo {
     font-family: montserrat;
+}
+
+#button {
+    position: fixed;
+    font-size: 20px;
+    height: 100px;
+    width: 100%;
+    bottom: 0;
+    background-color: #198C7B;
+    font-family: montserrat;
+    border: 0px;
+    z-index: 99;
 }
