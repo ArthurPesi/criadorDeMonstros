@@ -35,18 +35,23 @@ const atributos = ["vida","velocidade","forca","constituicao"];
 function criarMonstro()
 {
     var elementoPai = document.getElementById("monstros");
+    var carta = document.createElement("div"); 
     var monstro = document.createElement("div"); 
+    var stats = document.createElement("div"); 
+    carta.className = "carta"
     monstro.className = "monstro"
-    monstro.style.width = "300px"
-
-    elementoPai.appendChild(monstro);
+    stats.className = "stats"
+    carta.style.width = "300px"
+    elementoPai.appendChild(carta);
+    carta.appendChild(monstro);
+    carta.appendChild(stats);
 
     var sorteios = sortearMembros();
     var membros = criarMembros(sorteios, monstro);
 
-    setTimeout(posicionar,100,sorteios, membros, monstro);
+    setTimeout(posicionar,100,sorteios, membros, carta);
 
-    criarBarras(monstro);
+    criarBarras(stats);
 }
 
 function sortearMembros() {
@@ -72,6 +77,8 @@ function criarMembros(sorteios, monstro) {
 }
 
 function posicionar(sorteios, membros, monstro) {
+    var padding = parseInt(getComputedStyle(monstro).getPropertyValue('padding-left'))
+    console.log(padding)
     var alturaCabeca = membros[0].clientHeight + offsetCabecas[sorteios[0]];
     var larguraCabeca = membros[0].clientWidth
     var alturaCorpo = membros[1].clientHeight;
@@ -79,7 +86,7 @@ function posicionar(sorteios, membros, monstro) {
     var larguraBraco = membros[2].clientWidth;
     var larguraPerna = membros[3].clientWidth;
 
-    var leftBraco = ((parseInt(monstro.style.width) - larguraBraco) / 2);
+    var leftBraco = ((parseInt(monstro.style.width) - larguraBraco) / 2) + padding;
     var topCorpo = alturaCabeca -10;
     var topBraco = alturaCabeca + offsetTopBracos[sorteios[2]];
     var topPerna = alturaCabeca + alturaCorpo -10 + offsetTopPerna[sorteios[3]];
@@ -96,16 +103,19 @@ function posicionar(sorteios, membros, monstro) {
     membros[2].style.left = leftBraco.toString() + "px";
     membros[3].style.left = leftPerna.toString() + "px";
 }
-function criarBarras(divMonstro) {
+function criarBarras(stats) {
     for(var i = 0; i < 4; i++)
     {
         var sorteio = Math.floor(Math.random() * 101);
+        var stat = document.createElement("div")
         var barra = document.createElement("div");
         var recheio = document.createElement("div");
         var atributo = document.createElement("p");
-        divMonstro.appendChild(atributo)
-        divMonstro.appendChild(barra)
+        stats.appendChild(stat)
+        stat.appendChild(atributo)
+        stat.appendChild(barra)
         barra.appendChild(recheio)
+        stat.className = "stat"
         atributo.className = "atributo"
         barra.className = "barra"
         recheio.className = "recheio"
