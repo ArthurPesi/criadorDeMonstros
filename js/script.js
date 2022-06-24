@@ -22,7 +22,7 @@ const pernas = ["Tortuga/pernaTortuga.png",
 const ImgMembros = [cabecas,corpos,bracos,pernas];
 
 const offsetCabecas = [0,-30,10,0,0]
-const offsetTopPerna = [0,-10,0,0,-10]
+const offsetTopPerna = [-10,-10,0,0,-10]
 const offsetTopBracos = [20,-60,20,20,20]
 const offsetLeftBracos = [0,0,0,10,0]
 const offsetLeftPernas = [0,0,0,0,-25]
@@ -107,7 +107,7 @@ function posicionar(sorteios, membros, monstro) {
 function criarBarras(stats) {
     for(var i = 0; i < 4; i++)
     {
-        var sorteio = Math.floor(Math.random() * 101);
+        var sorteio = Math.floor(Math.random() * 100) + 1;
         var stat = document.createElement("div")
         var barra = document.createElement("div");
         var recheio = document.createElement("div");
