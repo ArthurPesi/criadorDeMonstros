@@ -8,7 +8,6 @@ html {
 } body {
     height: 100%;
     margin: 0px;
-    background-color: #ee9528;
     background-attachment: fixed;
     background-image: url("bg.jpg");
     background-size: 100% 100%;
@@ -59,19 +58,26 @@ html {
 }
 
 .monstro {
-    border: #012201 4px;
     background-color: #549127;
     height: 350px;
     width: 100%;
 }
 .stat {
-    margin: 0px;
-    display: inline-block;
+    margin: auto auto;
 }
 .stats{
     display: grid;
     grid-template-columns: auto auto;
     position: relative;
     bottom: 0px;
+    margin: auto auto;
+}
+
+#marginBottom {
+    height: 100px;
+}
+
+#monstros {
+    size: 100%;
     margin: auto auto;
 }

@@ -52,6 +52,7 @@ function criarMonstro()
     setTimeout(posicionar,100,sorteios, membros, carta);
 
     criarBarras(stats);
+    carta.scrollIntoView()
 }
 
 function sortearMembros() {
