@@ -79,7 +79,6 @@ function criarMembros(sorteios, monstro) {
 
 function posicionar(sorteios, membros, monstro) {
     var padding = parseInt(getComputedStyle(monstro).getPropertyValue('padding-left'))
-    console.log(padding)
     var alturaCabeca = membros[0].clientHeight + offsetCabecas[sorteios[0]];
     var larguraCabeca = membros[0].clientWidth
     var alturaCorpo = membros[1].clientHeight;
@@ -95,14 +94,25 @@ function posicionar(sorteios, membros, monstro) {
     var leftCorpo = ((larguraBraco - larguraCorpo) / 2) + leftBraco;
     var leftPerna = ((larguraBraco - larguraPerna) / 2) + offsetLeftPernas[sorteios[3]] + leftBraco;
     leftBraco += offsetLeftBracos[sorteios[2]]
-    membros[1].style.top = topCorpo.toString() + "px";
-    membros[2].style.top = topBraco.toString() + "px";
-    membros[3].style.top = topPerna.toString() + "px";
-
+    setTimeout(() => {
+        console.log(membros)
     membros[0].style.left = leftCabeca.toString() + "px";
-    membros[1].style.left = leftCorpo.toString() + "px";
-    membros[2].style.left = leftBraco.toString() + "px";
-    membros[3].style.left = leftPerna.toString() + "px";
+    }, 100, membros, leftCabeca);
+
+    setTimeout(() => {
+        membros[1].style.top = topCorpo.toString() + "px";
+        membros[1].style.left = leftCorpo.toString() + "px";
+    }, 135, membros, topCorpo, leftCorpo);
+
+    setTimeout(() => {
+        membros[2].style.top = topBraco.toString() + "px";
+        membros[2].style.left = leftBraco.toString() + "px";
+    }, 170, membros, topBraco, leftBraco);
+
+    setTimeout(() => {
+        membros[3].style.top = topPerna.toString() + "px";
+        membros[3].style.left = leftPerna.toString() + "px";
+    }, 205, membros, topPerna, leftPerna);
 }
 function criarBarras(stats) {
     for(var i = 0; i < 4; i++)
