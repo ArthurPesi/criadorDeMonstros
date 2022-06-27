@@ -40,7 +40,7 @@ function carregarImagens() {
             image.src = prefix + membro[j];
         }
     }
-    elementoPai.remove()
+    elementoPai.css("opacity","0")
     mostrarPagina()
 }
 
@@ -156,7 +156,6 @@ function criarBarras(stats) {
         barra.className = "barra"
         recheio.className = "recheio"
         atributo.innerHTML = atributos[i]
-        recheio.style.animation
         recheio.style.width = sorteio.toString() + "%"
     }
 }
