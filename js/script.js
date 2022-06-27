@@ -30,29 +30,47 @@ const offsetLeftPernas = [0,0,0,0,-25]
 const prefix = "sprites/";
 
 const atributos = ["vida","velocidade","forca","constituicao"];
+function carregarImagens() {
+    var elementoPai = $("#imageHolder")
+    for(var i = 0; i < ImgMembros.length; i++) {
+        var membro = ImgMembros[i]
+        for(var j = 0; j < membro.length; j++) {
+            var image = document.createElement("img")
+            elementoPai.append(image)
+            image.src = prefix + membro[j];
+        }
+    }
+    elementoPai.remove()
+    mostrarPagina()
+}
 
+function mostrarPagina() {
+    setTimeout(() => {$("#cover").remove()},300)
+    console.log('https://store.steampowered.com/app/1395560/Kandidatos/')
+}
 
 function criarMonstro()
 {
-    var elementoPai = document.getElementById("monstros");
-    var carta = document.createElement("div"); 
-    var monstro = document.createElement("div"); 
-    var stats = document.createElement("div"); 
-    carta.className = "carta"
-    monstro.className = "monstro"
-    stats.className = "stats"
-    carta.style.width = "300px"
-    elementoPai.appendChild(carta);
-    carta.appendChild(monstro);
-    carta.appendChild(stats);
+    if(document.readyState == "complete")
+    {
+        var elementoPai = $("#monstros");
+        var carta = document.createElement("div"); 
+        var monstro = document.createElement("div"); 
+        var stats = document.createElement("div"); 
+        carta.className = "carta"
+        monstro.className = "monstro"
+        stats.className = "stats"
+        carta.style.width = "300px"
+        elementoPai.append(carta);
+        carta.append(monstro);
+        carta.append(stats);
 
-    var sorteios = sortearMembros();
-    var membros = criarMembros(sorteios, monstro);
-
-    setTimeout(posicionar,100,sorteios, membros, carta);
-
-    criarBarras(stats);
-    carta.scrollIntoView()
+        var sorteios = sortearMembros();
+        var membros = criarMembros(sorteios, monstro);
+        posicionar(sorteios,membros,carta)
+        criarBarras(stats);
+        carta.scrollIntoView()
+    }
 }
 
 function sortearMembros() {
@@ -95,24 +113,31 @@ function posicionar(sorteios, membros, monstro) {
     var leftPerna = ((larguraBraco - larguraPerna) / 2) + offsetLeftPernas[sorteios[3]] + leftBraco;
     leftBraco += offsetLeftBracos[sorteios[2]]
     setTimeout(() => {
-        console.log(membros)
-    membros[0].style.left = leftCabeca.toString() + "px";
-    }, 100, membros, leftCabeca);
+        while(membros[0].clientHeight == 0) {}
+                membros[0].style.left = leftCabeca.toString() + "px";
+        }
+    , 10, membros, leftCabeca);
 
     setTimeout(() => {
-        membros[1].style.top = topCorpo.toString() + "px";
-        membros[1].style.left = leftCorpo.toString() + "px";
-    }, 135, membros, topCorpo, leftCorpo);
+        while(membros[1].clientHeight == 0) {}
+                membros[1].style.top = topCorpo.toString() + "px";
+                membros[1].style.left = leftCorpo.toString() + "px";
+        }
+        , 45, membros, topCorpo, leftCorpo);
 
     setTimeout(() => {
+        while(membros[2].clientHeight == 0) {}
         membros[2].style.top = topBraco.toString() + "px";
         membros[2].style.left = leftBraco.toString() + "px";
-    }, 170, membros, topBraco, leftBraco);
+        }
+    , 60, membros, topBraco, leftBraco);
 
     setTimeout(() => {
-        membros[3].style.top = topPerna.toString() + "px";
-        membros[3].style.left = leftPerna.toString() + "px";
-    }, 205, membros, topPerna, leftPerna);
+        while(membros[3].clientHeight == 0) {}
+                membros[3].style.top = topPerna.toString() + "px";
+                membros[3].style.left = leftPerna.toString() + "px";
+        }
+    , 115, membros, topPerna, leftPerna);
 }
 function criarBarras(stats) {
     for(var i = 0; i < 4; i++)
@@ -131,6 +156,7 @@ function criarBarras(stats) {
         barra.className = "barra"
         recheio.className = "recheio"
         atributo.innerHTML = atributos[i]
+        recheio.style.animation
         recheio.style.width = sorteio.toString() + "%"
     }
 }

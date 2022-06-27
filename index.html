@@ -1,15 +1,19 @@
 <!DOCTYPE html>
 <head>
-    <link rel="icon" href="sprites/Olhudo/cabecaOlhudo.png">
+    <link rel="icon" href="icone.png">
     <title>Criador de monstros =)</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/script.js"></script>
+
     <link href="css/stylesheet.css" rel="stylesheet">
-    <script src="js/script.js">
-    </script>
 </head>
-<body>
-    <div id="monstros"></div> 
-    <div>
-        <button id="button" onclick="criarMonstro()">criar monstro meu truta</button>
+<body onload="carregarImagens()">
+    <div id="cover">
+        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
     </div>
-    <div id="marginBottom"></div>
+    <div id="imageHolder"></div>
+    <button id="button" onclick="criarMonstro()">criar monstro meu truta</button>
+    <div id="monstros"></div>
+    <div id="marginBottom"></div> 
 </body>

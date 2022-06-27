@@ -1,0 +1,35 @@
+{
+    "prefix": "/sprites",
+    "ImgMembros": {
+        "cabecas":["Tortuga/cabecaTortuga.png",
+            "Griffin/cabecaGriffin.png",
+            "Olhudo/cabecaOlhudo.png",
+            "Zumbi/cabecaZumbi.png",
+            "Fantasma/cabecaFantasma.png"],
+            
+        "corpos": ["Tortuga/corpoTortuga.png",
+            "Griffin/corpoGriffin.png",
+            "Olhudo/corpoOlhudo.png",
+            "Zumbi/corpoZumbi.png",
+            "Fantasma/corpoFantasma.png"],
+
+        "bracos":["Tortuga/bracoTortuga.png",
+            "Griffin/bracoGriffin.png",
+            "Olhudo/bracoOlhudo.png",
+            "Zumbi/bracoZumbi.png",
+            "Fantasma/bracoFantasma.png"],
+        "pernas":["Tortuga/pernaTortuga.png",
+            "Griffin/pernaGriffin.png",
+            "Olhudo/pernaOlhudo.png",
+            "Zumbi/pernaZumbi.png",
+            "Fantasma/pernaFantasma.png"]
+    },
+    "offsets": {
+        "offsetCabecas": [0,-30,10,0,0],
+        "offsetTopPerna": [-10,-10,0,0,-10],
+        "offsetTopBracos": [20,-60,20,20,20],
+        "offsetLeftBracos": [0,0,0,10,0],
+        "offsetLeftPernas": [0,0,0,0,-25]
+    },
+    "atributos": ["vida","velocidade","forca","constituicao"]
+}
